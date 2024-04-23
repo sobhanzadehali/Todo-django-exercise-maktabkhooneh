@@ -38,7 +38,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 
     model = Task
     fields = ("title",)
-    success_url = reverse_lazy("todo-list")
+    success_url = reverse_lazy("todo:task-list")
     template_name = "todo/todo_create.html"
     # form_class = TaskForm      # it could be, it's not wrong
 
@@ -53,7 +53,7 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     updated task based on TaskUpdateForm and redirects to list of tasks 
     """
     model = Task
-    success_url = reverse_lazy("task-list")
+    success_url = reverse_lazy("todo:task-list")
     form_class = TaskUpdateForm
     template_name = "todo/update_task.html"
     
@@ -61,7 +61,7 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
 
 class TaskCompleteView(LoginRequiredMixin, View):
     model = Task
-    success_url = reverse_lazy("task-list")
+    success_url = reverse_lazy("todo:task-list")
 
     def get(self, request, *args, **kwargs):
         object = Task.objects.get(id=kwargs.get("pk"))
@@ -76,7 +76,8 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
     """
     model = Task
     context_object_name = "task"
-    success_url = reverse_lazy("task-list")
+    success_url = reverse_lazy("todo:task-list")
+    template_name = "todo/task_delete.html"
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
