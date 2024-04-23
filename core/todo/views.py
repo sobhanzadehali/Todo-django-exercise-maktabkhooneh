@@ -64,9 +64,9 @@ class TaskCompleteView(LoginRequiredMixin, View):
     success_url = reverse_lazy("todo:task-list")
 
     def get(self, request, *args, **kwargs):
-        object = Task.objects.get(id=kwargs.get("pk"))
-        object.complete = True 
-        object.save()
+        obj = Task.objects.get(id=kwargs.get("pk"))
+        obj.completed = True 
+        obj.save()
         return redirect(self.success_url)
 
 
