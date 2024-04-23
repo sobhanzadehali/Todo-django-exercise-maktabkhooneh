@@ -60,12 +60,18 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class TaskCompleteView(LoginRequiredMixin, View):
+    """
+    changes status of user Tasks and redirects back to main page(task list)
+    """
     model = Task
     success_url = reverse_lazy("todo:task-list")
 
     def get(self, request, *args, **kwargs):
+        """
+        specifies what url does when request is GET
+        """
         obj = Task.objects.get(id=kwargs.get("pk"))
-        obj.completed = True 
+        obj.completed = True # complete => completed 
         obj.save()
         return redirect(self.success_url)
 
@@ -75,7 +81,7 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
     Deletes Task and redirects to list of tasks(makes sure that users only delete their own tasks)
     """
     model = Task
-    context_object_name = "task"
+    context_object_name = "task" # the name of object that will be used in html template {{task}}
     success_url = reverse_lazy("todo:task-list")
     template_name = "todo/task_delete.html"
 
