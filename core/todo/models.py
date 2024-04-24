@@ -15,6 +15,9 @@ class Task(models.Model):
 
     class Meta:
         order_with_respect_to = 'user'
+    
+    def get_username(self):
+        return self.user.username
 
     def __str__(self):
         return self.title
