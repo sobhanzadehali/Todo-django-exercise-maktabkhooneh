@@ -1,11 +1,7 @@
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect
 from django.views.generic.list import ListView
-from django.views.generic.edit import (
-    CreateView,
-    UpdateView,
-    DeleteView,
-)
+from django.views.generic.edit import (CreateView,UpdateView,DeleteView)
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views import View
@@ -39,7 +35,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     fields = ("title",)
     success_url = reverse_lazy("todo:task-list")
-    template_name = "todo/todo_create.html"
+    template_name = "todo/update_task.html"
     # form_class = TaskForm      # it could be, it's not wrong
 
     def form_valid(self, form):

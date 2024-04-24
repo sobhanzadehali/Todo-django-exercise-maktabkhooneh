@@ -1,5 +1,3 @@
-from ast import mod
-from turtle import title
 from django import forms
 from .models import Task
 
@@ -13,7 +11,7 @@ class TaskUpdateForm(forms.ModelForm):
                 "placeholder": "enter the title",
             }
         ),
-        label="title",
+        label="", # when it take a value here, it will overlap
     )
 
     class Meta:
