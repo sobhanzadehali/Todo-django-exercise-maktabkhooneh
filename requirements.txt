@@ -6,3 +6,5 @@ djangorestframework
 drf-yasg
 djoser
 djangorestframework_simplejwt
+
+drf-spectacular
