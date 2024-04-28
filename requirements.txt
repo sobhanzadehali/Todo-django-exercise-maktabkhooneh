@@ -13,3 +13,5 @@ pytest
 pytest-django
 
 black
+
+faker
