@@ -8,3 +8,6 @@ djoser
 djangorestframework_simplejwt
 
 drf-spectacular
+
+pytest
+pytest-django
