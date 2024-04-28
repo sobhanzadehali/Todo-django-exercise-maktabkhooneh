@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: docker compose up and build
+      run: docker-compose up -d
+    - name: reformat with black
+      run: docker-compose exec backend sh -c "black ."
+    - name: run tests
+      run: docker-compose exec backend sh -c "pytest ."
