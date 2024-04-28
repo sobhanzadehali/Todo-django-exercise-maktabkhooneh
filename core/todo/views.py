@@ -1,7 +1,7 @@
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect
 from django.views.generic.list import ListView
-from django.views.generic.edit import (CreateView,UpdateView,DeleteView)
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views import View
@@ -43,22 +43,22 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)  # do we really need to give super() values??
 
 
-
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
     """
-    updated task based on TaskUpdateForm and redirects to list of tasks 
+    updated task based on TaskUpdateForm and redirects to list of tasks
     """
+
     model = Task
     success_url = reverse_lazy("todo:task-list")
     form_class = TaskUpdateForm
     template_name = "todo/update_task.html"
-    
 
 
 class TaskCompleteView(LoginRequiredMixin, View):
     """
     changes status of user Tasks and redirects back to main page(task list)
     """
+
     model = Task
     success_url = reverse_lazy("todo:task-list")
 
@@ -67,7 +67,7 @@ class TaskCompleteView(LoginRequiredMixin, View):
         specifies what url does when request is GET
         """
         obj = Task.objects.get(id=kwargs.get("pk"))
-        obj.completed = True # complete => completed 
+        obj.completed = True  # complete => completed
         obj.save()
         return redirect(self.success_url)
 
@@ -76,8 +76,11 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
     """
     Deletes Task and redirects to list of tasks(makes sure that users only delete their own tasks)
     """
+
     model = Task
-    context_object_name = "task" # the name of object that will be used in html template {{task}}
+    context_object_name = (
+        "task"  # the name of object that will be used in html template {{task}}
+    )
     success_url = reverse_lazy("todo:task-list")
     template_name = "todo/task_delete.html"
 

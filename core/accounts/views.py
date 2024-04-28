@@ -11,10 +11,11 @@ from django.shortcuts import redirect
 
 class CustomLoginView(LoginView):
     """
-    Logins User 
+    Logins User
     """
+
     template_name = "accounts/login.html"
-    fields = "username","password"
+    fields = "username", "password"
     redirect_authenticated_user = True
 
     def get_success_url(self):
@@ -22,10 +23,10 @@ class CustomLoginView(LoginView):
 
 
 class RegisterPage(FormView):
-    
     """
     if user is not available it will be registered
     """
+
     template_name = "accounts/register.html"
     form_class = UserCreationForm
     redirect_authenticated_user = True

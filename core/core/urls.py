@@ -14,40 +14,54 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="TODO app apis",
-      default_version="v1",
-      description="this api documentation is for maktabkhooneh homework",
-      terms_of_service="",
-      contact=openapi.Contact(email="contact@example.com"),
-      license=openapi.License(name="MIT License"),
-   ),
-   public=True,
+    openapi.Info(
+        title="TODO app apis",
+        default_version="v1",
+        description="this api documentation is for maktabkhooneh homework",
+        terms_of_service="",
+        contact=openapi.Contact(email="contact@example.com"),
+        license=openapi.License(name="MIT License"),
+    ),
+    public=True,
 )
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("api-auth/", include('rest_framework.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('todo/', include('todo.urls')),
-    
+    path("admin/", admin.site.urls),
+    path("api-auth/", include("rest_framework.urls")),
+    path("accounts/", include("accounts.urls")),
+    path("todo/", include("todo.urls")),
     # doc
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path(
+        "swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
     # drf-spec
-    path('schema/', SpectacularAPIView.as_view(), name='schema'),
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
     # Optional UI:
-    path('schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-    path('schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    path(
+        "schema/swagger-ui/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
+    path(
+        "schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"
+    ),
 ]

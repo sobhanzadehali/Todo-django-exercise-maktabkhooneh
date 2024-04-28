@@ -11,7 +11,7 @@ class TaskUpdateForm(forms.ModelForm):
                 "placeholder": "enter the title",
             }
         ),
-        label="", # when it take a value here, it will overlap
+        label="",  # when it take a value here, it will overlap
     )
 
     class Meta:

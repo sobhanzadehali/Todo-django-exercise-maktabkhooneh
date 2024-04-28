@@ -11,3 +11,5 @@ drf-spectacular
 
 pytest
 pytest-django
+
+black
