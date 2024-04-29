@@ -28,3 +28,12 @@ services:
     depends_on:
       - redis
       - backend
+  celery-beat:
+    build: .
+    container_name: beat
+    command: celery -A core beat -l info
+    volumes:
+      - ./core:/app
+    depends_on:
+      - redis
+      - backend
