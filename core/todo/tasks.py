@@ -7,4 +7,6 @@ def deleteTodos():
     if ts:
         for i in ts:
             i.delete()
-    
+        print('tasks deleted')
+    else:
+        print("nothing to delete!")

@@ -4,6 +4,8 @@ from celery import Celery
 
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+import django
+django.setup()
 
 app = Celery('core')
 
@@ -15,3 +17,10 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # Load task modules from all registered Django apps.
 app.autodiscover_tasks()
+
+from todo.tasks import deleteTodos
+
+@app.on_after_configure.connect
+def setup_periodic_tasks(sender, **kwargs):
+    
+    sender.add_periodic_task(600.0, deleteTodos.s() ,name='delete todo every 10')
