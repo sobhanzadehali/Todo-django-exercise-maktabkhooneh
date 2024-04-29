@@ -18,3 +18,11 @@ services:
     environment:
       - SECRECT_KEY=test
       - DEBUG=True
+    depends_on:
+      - redis
+  worker:
+    build: .
+    command: celery -A core worker --loglevel=info
+    depends_on:
+      - redis
+      - backend
