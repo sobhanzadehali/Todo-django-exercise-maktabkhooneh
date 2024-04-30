@@ -6,12 +6,10 @@ djangorestframework
 drf-yasg
 djoser
 djangorestframework_simplejwt
-
 drf-spectacular
-
 pytest
 pytest-django
-
 black
-
 faker
+celery
+redis

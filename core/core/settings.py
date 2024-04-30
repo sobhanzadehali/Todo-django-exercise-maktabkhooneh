@@ -144,3 +144,6 @@ SPECTACULAR_SETTINGS = {
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+
+# Celery
+CELERY_BROKER_URL = "redis://redis:6379/1"
