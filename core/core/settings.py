@@ -147,3 +147,14 @@ REST_FRAMEWORK = {
 
 # Celery
 CELERY_BROKER_URL = "redis://redis:6379/1"
+
+# Redis Cache
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
