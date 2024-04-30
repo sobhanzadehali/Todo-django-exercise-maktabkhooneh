@@ -13,3 +13,4 @@ black
 faker
 celery
 redis
+django-redis
