@@ -1,16 +1,23 @@
+# main
 django>4,<5
-python-decouple
-django-filter
-markdown
 djangorestframework
-drf-yasg
-djoser
-djangorestframework_simplejwt
-drf-spectacular
+markdown
 pytest
 pytest-django
-black
-faker
-celery
+python-decouple
+# doc
+drf-yasg
+drf-spectacular
+# auth
+djoser
+djangorestframework_simplejwt
+# deploy
+gunicorn
+# third party
+django-cors-headers
 redis
 django-redis
+celery
+django-filter
+black
+faker
