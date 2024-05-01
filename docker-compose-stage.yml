@@ -23,25 +23,48 @@ services:
     environment:
       - SECRET_KEY=test
       - DEBUG=False
+      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=hello_django_dev
+      - SQL_USER=hello_django
+      - SQL_PASSWORD=hello_django
+      - SQL_HOST=db
+      - SQL_PORT=5432
     depends_on:
+      - db
       - redis
   worker:
     build: .
     command: celery -A core worker --loglevel=info
     volumes:
       - ./core:/app
+    environment:
+      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=hello_django_dev
+      - SQL_USER=hello_django
+      - SQL_PASSWORD=hello_django
+      - SQL_HOST=db
+      - SQL_PORT=5432
     depends_on:
       - redis
       - backend
+      - db
   celery-beat:
     build: .
     container_name: beat
     command: celery -A core beat -l info
     volumes:
       - ./core:/app
+    environment:
+      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=hello_django_dev
+      - SQL_USER=hello_django
+      - SQL_PASSWORD=hello_django
+      - SQL_HOST=db
+      - SQL_PORT=5432
     depends_on:
       - redis
-      - backend 
+      - backend
+      - db
   
   nginx:
     image: nginx

@@ -21,3 +21,5 @@ celery
 django-filter
 black
 faker
+# DB
+psycopg2-binary
